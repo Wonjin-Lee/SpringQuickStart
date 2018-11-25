@@ -1,13 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-<bean id="samsung" class="com.springbook.biz.SamsungTv" init-method="initMethod" destroy-method="destroyMethod">
-	<constructor-arg ref="apple"></constructor-arg>
-	<constructor-arg value="2700000"></constructor-arg>
-</bean>
-
-<bean id="sony" class="com.springbook.biz.SonySpeaker"></bean>
-<bean id="apple" class="com.springbook.biz.AppleSpeaker"></bean>
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<context:component-scan base-package="com.springbook.biz"></context:component-scan>
+	
+	<bean id="log" class="com.springbook.biz.common.Log4jAdvice"></bean>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.springbook.biz..*Impl.*(..))" id="allPointcut"/>
+		
+		<aop:aspect ref="log">
+			<aop:before pointcut-ref="allPointcut" method="printLogging"/>
+		</aop:aspect>
+	</aop:config>
+	<!-- 
+	<bean id="userService" class="com.springbook.biz.user.impl.UserServiceImpl">
+		<property name="userDAO" ref="userDAO"></property>	
+	</bean>	
+	
+	<bean id="userDAO" class="com.springbook.biz.user.impl.UserDAO"></bean>
+	 -->
+	<!--
+	<bean id="samsung" class="com.springbook.biz.SamsungTv" init-method="initMethod" destroy-method="destroyMethod">
+		<constructor-arg ref="apple"></constructor-arg>
+		<constructor-arg value="2700000"></constructor-arg>
+	</bean>
+	
+	<bean id="lg" class="com.springbook.biz.LgTv">
+		<property name="speaker" ref="apple"></property>
+		<property name="price" value="2700000"></property>
+	</bean>
+	
+	<bean id="sony" class="com.springbook.biz.SonySpeaker"></bean>
+	<bean id="apple" class="com.springbook.biz.AppleSpeaker"></bean>
+	
+	<bean id="collectionBean" class="com.springbook.ioc.injection.CollectionBean">
+		<property name="addressList">
+			<list>
+				<value>서울시 강남구 역삼동</value>
+				<value>서울시 성동구 행당동</value>
+			</list>
+		</property>
+	</bean>
+	-->
 </beans>

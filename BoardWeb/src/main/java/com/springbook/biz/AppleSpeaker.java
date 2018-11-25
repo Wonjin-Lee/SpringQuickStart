@@ -1,5 +1,7 @@
 package com.springbook.biz;
 
+import org.springframework.stereotype.Component;
+
 public class AppleSpeaker implements Speaker {
 
 	public AppleSpeaker() {

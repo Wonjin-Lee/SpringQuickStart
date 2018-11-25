@@ -1,6 +1,20 @@
 package com.springbook.biz;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+//@Component("tv")
 public class LgTv implements TV {
+
+	//@Autowired
+	private Speaker speaker;
+	
+	public LgTv() {
+		System.out.println("===> LgTV(1) 객체 생성");
+	}
 
 	@Override
 	public void powerOn() {
@@ -14,12 +28,12 @@ public class LgTv implements TV {
 
 	@Override
 	public void volumeUp() {
-		System.out.println("LG TV VOLUME UP !");
+		speaker.volumeUp();
 	}
 
 	@Override
 	public void volumeDown() {
-		System.out.println("LG TV VOLUME DOWN !");
+		speaker.volumeDown();
 	}
 
 }
