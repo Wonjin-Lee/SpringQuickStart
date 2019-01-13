@@ -25,4 +25,5 @@
 	
 	// 3. 화면 네비게이션
 	response.sendRedirect("getBoardList.jsp");
+	test;;;
 %>
