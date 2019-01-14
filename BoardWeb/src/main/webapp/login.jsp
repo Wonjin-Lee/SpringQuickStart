@@ -1,4 +1,5 @@
 <!-- Model 1 으로 게시판 구현 -->
+<!-- Model 1 을 MVC Model 로 변환 -->
 <!-- 로그인 페이지 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,7 +14,7 @@
 <center>
 <h1>로그인</h1>
 <hr>
-<form action="login_proc.jsp" method="post">
+<form action="login.do" method="post">
 <table border="1" cellpadding="0" cellspacing="0">
 	<tr>
 		<td bgcolor="orange">아이디</td>

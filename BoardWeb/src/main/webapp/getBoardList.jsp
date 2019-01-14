@@ -1,4 +1,5 @@
 <!-- Model 1 으로 게시판 구현 -->
+<!-- Model 1 을 MVC Model 로 변환 -->
 <!-- 글 목록 검색 기능 구현 -->
 
 <%@ page import="java.util.List" %>
@@ -8,13 +9,8 @@
     pageEncoding="UTF-8"%>
     
 <%
-	// 1. 사용자 입력 정보 추출
-	// 2. DB 연동 처리
-	BoardVO vo = new BoardVO();
-	BoardDAO boardDAO = new BoardDAO();
-	List<BoardVO> boardList = boardDAO.getBoardList(vo);
-	
-	// 3. 응답 화면 구성
+	// 세션에 저장된 글 목록을 꺼낸다.
+	List<BoardVO> boardList = (List) session.getAttribute("boardList");
 %>
 
 <!DOCTYPE html>
@@ -26,7 +22,7 @@
 <body>
 <center>
 <h1>글 목록</h1>
-<h3>테스트님 환영합니다...<a href="logout_proc.jsp">Log-out</a></h3>
+<h3>테스트님 환영합니다...<a href="logout.do">Log-out</a></h3>
 
 <!-- 검색 시작 -->
 <form action="getBoardList.jsp" method="post">
@@ -58,7 +54,7 @@
 <% for(BoardVO board : boardList) { %>
 <tr>
 	<td><%= board.getSeq() %></td>
-	<td align="left"><a href="getBoard.jsp?seq=<%= board.getSeq() %>"><%= board.getTitle() %></a></td>
+	<td align="left"><a href="getBoard.do?seq=<%= board.getSeq() %>"><%= board.getTitle() %></a></td>
 	<td><%= board.getWriter() %></td>
 	<td><%= board.getRegDate() %></td>
 	<td><%= board.getCnt() %></td>

@@ -1,4 +1,5 @@
 <!-- Model 1 으로 게시판 구현 -->
+<!-- Model 1 을 MVC Model 로 변환 -->
 <!-- 조희된 게시물의 상세 화면 제공하는 페이지 -->
 
 <%@ page import="com.springbook.biz.board.impl.BoardDAO" %>
@@ -7,17 +8,8 @@
     pageEncoding="UTF-8"%>
 
 <%
-	// 1. 검색할 게시물 번호 추출
-	String seq = request.getParameter("seq");
-
-	// 2. DB 연동 처리
-	BoardVO vo = new BoardVO();
-	vo.setSeq(Integer.parseInt(seq));
-	
-	BoardDAO boardDAO = new BoardDAO();
-	BoardVO board = boardDAO.getBoard(vo);
-	
-	// 3. 응답 화면 구성
+	// 세션에 저장된 게시글 정보를 꺼낸다.
+	BoardVO board = (BoardVO) session.getAttribute("board");
 %>
 
 <!DOCTYPE html>
@@ -29,9 +21,9 @@
 <body>
 <center>
 <h1>글 상세</h1>
-<a href="logout_proc.jsp">Log_out</a>
+<a href="logout.do">Log_out</a>
 <hr>
-<form action="updateBoard_proc.jsp" method="post">
+<form action="updateBoard.do" method="post">
 	<input type="hidden" name="seq" value="<%= board.getSeq() %>">
 	<table border="1" cellpadding="0" cellspacing="0">
 		<tr>
@@ -63,7 +55,7 @@
 </form>
 <hr>
 <a href="insertBoard.jsp">글 등록</a>&nbsp;&nbsp;&nbsp;
-<a href="deleteBoard_proc.jsp?seq=<%= board.getSeq() %>">글 삭제</a>&nbsp;&nbsp;&nbsp;
+<a href="deleteBoard_proc.do?seq=<%= board.getSeq() %>">글 삭제</a>&nbsp;&nbsp;&nbsp;
 <a href="getBoardList.jsp">글 목록</a>
 </center>
 </body>
