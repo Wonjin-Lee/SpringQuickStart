@@ -13,6 +13,7 @@ public class DispatcherServlet extends HttpServlet {
 	private HandlerMapping handlerMapping;
 	private ViewResolver viewResolver;
 	
+	// init() 메소드가 호출될 때 HandlerMapping 과 ViewResolver 가 생성된다.
 	public void init() throws ServletException {
 		handlerMapping = new HandlerMapping();
 		viewResolver = new ViewResolver();

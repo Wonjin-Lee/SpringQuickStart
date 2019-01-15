@@ -7,6 +7,7 @@ import com.springbook.biz.user.UserVO;
 import com.springbook.biz.user.impl.UserDAO;
 import com.springbook.view.controller.Controller;
 
+// 로그인 컨트롤러
 public class LoginController implements Controller {
 
 	@Override
