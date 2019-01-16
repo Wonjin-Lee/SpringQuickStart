@@ -2,17 +2,11 @@
 <!-- Model 1 을 MVC Model 로 변환 -->
 <!-- 글 목록 검색 기능 구현 -->
 
-<%@ page import="java.util.List" %>
-<%@ page import="com.springbook.biz.board.BoardVO" %>
-<%@ page import="com.springbook.biz.board.impl.BoardDAO" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%
-	// 세션에 저장된 글 목록을 꺼낸다.
-	List<BoardVO> boardList = (List) session.getAttribute("boardList");
-%>
-
+<!-- 자바 코드를 EL과 JSTL로 대체 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,15 +45,15 @@
 </tr>
 
 <!-- 게시물 전체를 출력 -->
-<% for(BoardVO board : boardList) { %>
+<c:forEach items="${boardList }" var="board">
 <tr>
-	<td><%= board.getSeq() %></td>
-	<td align="left"><a href="getBoard.do?seq=<%= board.getSeq() %>"><%= board.getTitle() %></a></td>
-	<td><%= board.getWriter() %></td>
-	<td><%= board.getRegDate() %></td>
-	<td><%= board.getCnt() %></td>
+	<td>${board.seq }</td>
+	<td align="left"><a href="getBoard.do?seq=${board.seq }">${board.title }</a></td>
+	<td>${board.writer }</td>
+	<td>${board.regDate }</td>
+	<td>${board.cnt }</td>
 </tr>
-<% } %>
+</c:forEach>
 
 </table>
 <br>
