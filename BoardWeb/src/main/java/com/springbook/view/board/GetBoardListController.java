@@ -33,7 +33,7 @@ public class GetBoardListController implements Controller {
 		// 세션에 많은 정보가 저장되면 서버에 부담이 된다.
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("boardList", boardList);
-		mav.setViewName("getBoardList.jsp");
+		mav.setViewName("getBoardList");
 		return mav;
 	}
 	

@@ -33,9 +33,9 @@ public class LoginController implements Controller {
 		// 메소드의 리턴 타입이 ModelAndView
 		ModelAndView mav = new ModelAndView();
 		if(user != null) {
-			mav.setViewName("getBoardList.do");
+			mav.setViewName("redirect:getBoardList.do");
 		} else {
-			mav.setViewName("login.jsp");
+			mav.setViewName("redirect:login.jsp");
 		}
 		return mav;
 	}

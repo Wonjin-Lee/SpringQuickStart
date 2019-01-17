@@ -9,6 +9,11 @@
 			<props>
 				<prop key="/login.do">login</prop>
 				<prop key="/getBoardList.do">getBoardList</prop>
+				<prop key="/getBoard.do">getBoard</prop>
+				<prop key="/insetBoard.do">insertBoard</prop>
+				<prop key="/updateBoard.do">updateBoard</prop>
+				<prop key="/deleteBoard.do">deleteBoard</prop>
+				<prop key="/logout.do">logout</prop>
 			</props>
 		</property>
 	</bean>
@@ -16,4 +21,16 @@
 	<!-- Controller 등록 -->
 	<bean id="login" class="com.springbook.view.user.LoginController"></bean>
 	<bean id="getBoardList" class="com.springbook.view.board.GetBoardListController"></bean>
+	<bean id="getBoard" class="com.springbook.view.board.GetBoardController"></bean>
+	<bean id="insertBoard" class="com.springbook.view.board.InsertBoardController"></bean>
+	<bean id="updateBoard" class="com.springbook.view.board.UpdateBoardController"></bean>
+	<bean id="deleteBoard" class="com.springbook.view.board.DeleteBoardController"></bean>
+	<bean id="logout" class="com.springbook.view.user.LogoutController"></bean>
+	
+	<!-- 클라이언트의 직접적인 jsp 호출을 차단하기 위해서 ViewResolver 를 사용한다. -->
+	<!-- ViewResolver 등록 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/board/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
 </beans>

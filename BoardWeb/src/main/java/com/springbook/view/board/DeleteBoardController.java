@@ -3,6 +3,7 @@ package com.springbook.view.board;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.springbook.biz.board.BoardVO;
@@ -11,7 +12,7 @@ import com.springbook.biz.board.impl.BoardDAO;
 // 글 삭제 컨트롤러
 public class DeleteBoardController implements Controller {
 	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("글 삭제 처리");
 		
 		// 1. 사용자 입력 정보 추출
@@ -25,8 +26,8 @@ public class DeleteBoardController implements Controller {
 		boardDAO.deleteBoard(vo);
 		
 		// 3. 화면 네비게이션
-		// getBoardList.jsp 로 리다이렉트 하는 것이 아니라
-		// 게시물을 삭제후 갱신된 글 목록을 다시 검색해야 하기 때문에 getBoardList.do 로 리다이렉트.
-		return "getBoardList.do";
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:getBoardList.do");
+		return mav;
 	}
 }
