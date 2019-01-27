@@ -4,8 +4,8 @@
 
 <mapper namespace="BoardDAO">
 	<insert id="insertBoard">
-		insert into board(seq, title, writer, content)
-		values((select ifnull(max(seq), 0)+1 from board), #{title}, #{writer}, #{content})
+		insert into board(title, writer, content)
+		values(#{title}, #{writer}, #{content})
 	</insert>
 	
 	<update id="updateBoard">
@@ -22,7 +22,7 @@
 	
 	<select id="getBoardList" resultType="board">
 		select * from board
-		where title like '%'#{searchKeyword}'%'
+		where title like '%'||#{searchKeyword}||'%'
 		order by seq desc
 	</select>
 </mapper>
