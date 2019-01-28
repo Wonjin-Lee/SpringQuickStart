@@ -33,6 +33,11 @@
 		<property name="dataSource" ref="dataSource"></property>	
 	</bean>
 	
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:sql-map-config.xml"></property>
+	</bean>
+	
 	<!-- 
 	<bean id="userService" class="com.springbook.biz.user.impl.UserServiceImpl">
 		<property name="userDAO" ref="userDAO"></property>	
