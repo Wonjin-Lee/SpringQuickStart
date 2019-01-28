@@ -4,25 +4,35 @@
 
 <mapper namespace="BoardDAO">
 	<insert id="insertBoard">
-		insert into board(title, writer, content)
-		values(#{title}, #{writer}, #{content})
+		<![CDATA[
+			INSERT INTO BOARD(TITLE, WRITER, CONTENT)
+			VALUES(#{title}, #{writer}, #{content})
+		]]>
 	</insert>
 	
 	<update id="updateBoard">
-		update board set title=#{title}, content=#{content} where seq=#{seq}
+		<![CDATA[
+			UPDATE BOARD SET TITLE=#{title}, CONTENT=#{content} WHERE SEQ=#{seq}
+		]]>
 	</update>
 	
 	<delete id="deleteBoard">
-		delete board where seq=#{seq}
+		<![CDATA[
+			DELETE BOARD WHERE SEQ=#{seq}
+		]]>
 	</delete>
 	
 	<select id="getBoard" resultType="board">
-		select * from board where seq=#{seq}
+		<![CDATA[
+			SELECT * FROM BOARD WHERE SEQ=#{seq}
+		]]>
 	</select>
 	
 	<select id="getBoardList" resultType="board">
-		select * from board
-		where title like '%'||#{searchKeyword}||'%'
-		order by seq desc
+		<![CDATA[
+			SELECT * FROM BOARD
+			WHERE TITLE LIKE '%'||#{searchKeyword}||'%'
+			ORDER BY SEQ DESC
+		]]>
 	</select>
 </mapper>
